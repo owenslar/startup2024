@@ -24,7 +24,7 @@ I will use the required technologies in the following ways.
 - Web Services - Backend service with endpoins for: 
     - user authentication
     - tee time booking
-    - external API integration - (I have been searching for an API that provides me with tee time information from golf courses and I haven't found a free one. I will keep searching but my backup plan is to use mock data and use a weather API to provide users with weather data at the chosen golf course)
+    - external API integration - (I have been searching for an API that provides me with tee time information from golf courses and I haven't found a free one. I will keep searching, but my backup plan is to use mock data for the tee times and use a weather API to provide users with weather data at the chosen golf course)
     - updating list of tee times
 - Database/Login - Store users and tee time data in database. Cannot reserve a tee time unless logged in.
 - WebSocket - As a tee time is reserved, it goes off the screen for other users. As a tee time is cancelled, it reappears on the webpage.
