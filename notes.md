@@ -11,4 +11,4 @@
 
 - Website Notes
     - IP: 54.152.147.228
-    - ssh command: 
+    - ssh command: ssh -i ~/Desktop/cs260/cs260keypair.pem ubuntu@54.152.147.228
