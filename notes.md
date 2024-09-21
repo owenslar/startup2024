@@ -39,3 +39,18 @@
      <ol><ul> - ordered or unordered lists
      ```
      - Visit [w3schools](https://www.w3schools.com) to practice
+     - Form element
+          - Submits the values of the inputs it contains
+          - ` <form action ="form.html" method="post"> `
+     - Input element
+          - represents many different input types
+          - text, password, email, telephone number (tel), url, number, checkbox, radio, range, date, datetime-local, month, week, color, file, submit
+          - Most input elements share the following attributes: 
+               - name - name of the input
+               - disabled - disables the ability for user to interact
+               - value - the initial value of the input
+               - required - signifies that a value is required in order to be valid
+          - On some inputs you can use the pattern attribute which is a regular expression that must match for the input to be valid
+          - Preceed an input element with a label tag with an id tag linking it to the input and a name
+          ` <label id="inputID">Name</label>`
+          
