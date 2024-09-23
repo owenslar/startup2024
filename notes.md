@@ -10,6 +10,14 @@
      git push
      git pull
      ```
+- Important Vim commands
+     - :h - help
+     - i - enter insert mode
+     - Esc - exit insert mode
+     - u - undo
+     - :w - write file
+     - :q quit
+     - :q! quit without saving
 
 - Website Notes
     - IP: 54.152.147.228
