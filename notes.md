@@ -72,3 +72,13 @@
      - Internal media elements
           - `svg`: render graphics within HTML
           - `canvas`: facilitates 2D drawing and animation
+- CSS Notes
+     - use the name of a tag to apply styling to every one of those tags
+     - use .class to apply styling to any tag with given class
+     - use #id to apply styling to any tag with given id
+     - separate tags by comma to apply styling to a list of tags
+     - separate tags by space to apply styling to elements that are a decendent of a specified element
+     - use a greater than symbol to apply styling to elements that are a direct child of a specified element
+     - use tag:hover to apply styling when the mouse is hovering on the item
+     - Common Syntax
+          - 
