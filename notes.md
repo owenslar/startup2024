@@ -81,4 +81,13 @@
      - use a greater than symbol to apply styling to elements that are a direct child of a specified element
      - use tag:hover to apply styling when the mouse is hovering on the item
      - Common Syntax
-          - 
+          | Property | Input | Purpose |
+          | -------- | ----- | ------- |
+          | background-color | color | fill the background |
+          | border | color width style | creates border with specified styling |
+          | border-radius | any unit | makes the border curved |
+          | box-shadow | x-offset y-offset radius color | creates a shadow |
+          | color | color input | modifies text color |
+          | cursor | type | tells cursor how to display |
+          | font-family | font | modifies font (import a google font)|
+          | animation | animation type | animates something (use keyframes) |
