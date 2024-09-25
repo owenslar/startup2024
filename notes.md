@@ -1,4 +1,4 @@
-#CS 260 notes
+# CS 260 notes
 
 - git commands
      ```
