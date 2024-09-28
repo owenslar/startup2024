@@ -24,6 +24,7 @@
     - `ssh command: ssh -i ~/Desktop/cs260/cs260keypair.pem ubuntu@54.152.147.228`
      - leave secure shell with `exit` command
      - domains: owenlarson.click, startup.owenlarson.click, simon,owenlarson.click
+     - Deploy files command (HTML) ` ./deloyFiles.sh -k ~/Desktop/cs260/cs260keypair.pem -h owenlarson.click -s startup `
 
 
 - HTML Notes
