@@ -29,3 +29,15 @@ I will use the required technologies in the following ways.
 - Database/Login - Store users and tee time data in database. Cannot reserve a tee time unless logged in.
 - WebSocket - As a tee time is reserved, it goes off the screen for other users. As a tee time is cancelled, it reappears on the webpage.
 
+## HTML Deliverable
+
+For this deliverable I built out the basic structure of my application using HTML.
+
+- HTML pages - Four HTML pages that include a login page, a main page for booking tee times, a page holding tee time booking data, and an about page.
+- Links - The login page links to the booking page through the login button, and the nav section in the header of every page links to the other pages
+- Text - The available tee times have textual information, as well as an about section with textual information.
+- Images - Each available tee time has an image of that golf course displayed in the box.
+- DB/Login - Input box and submit button for login. The currently reserved or canceled tee times will be stored in the database. (The information on the "Your Reservations" page on my website)
+- 3rd Party Service Calls - The available tee times in the area will be displayed through an external API. (I am still searching for a free API that provides data from golf course websites. If I can't find one, I will use an API to display the current weather at that golf course, which I have a text placeholder for.)
+- WebSocket - The available tee times will be updated in real time when another user books or cancels a tee time. 
+
