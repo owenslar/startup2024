@@ -79,7 +79,9 @@
      - use #id to apply styling to any tag with given id
      - separate tags by comma to apply styling to a list of tags
      - separate tags by space to apply styling to elements that are a decendent of a specified element
-     - use a greater than symbol to apply styling to elements that are a direct child of a specified element
+     - use > to apply styling to elements that are a direct child of a specified element
+     - use a ~ to apply styling to elements that are general siblings
+     - use a + to apply styling to an element that has a specified adjacent sibling
      - use tag:hover to apply styling when the mouse is hovering on the item
      - Common Syntax
           | Property | Input | Purpose |
@@ -92,3 +94,19 @@
           | cursor | type | tells cursor how to display |
           | font-family | font | modifies font (import a google font)|
           | animation | animation type | animates something (use keyframes) |
+     - Display keywords
+          - none - don't display this element
+          - block - display this element with width that fills parent element
+          - inline - display this element with width that is only as big as its content
+          - flex - display this element's childred in a flexible orientation
+          - grid - display this element's children in a grid orientation
+          - float proptery - allows inline elements to wrap around it
+     - Include Bootstrap
+          ```
+          <link 
+               href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+               rel="stylesheet"
+               integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+               crossorigin="anonymous"
+          /> 
+          ```
