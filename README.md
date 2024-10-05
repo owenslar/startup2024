@@ -41,3 +41,13 @@ For this deliverable I built out the basic structure of my application using HTM
 - 3rd Party Service Calls - The available tee times in the area will be displayed through an external API. (I am still searching for a free API that provides data from golf course websites. If I can't find one, I will use an API to display the current weather at that golf course, which I have a text placeholder for.)
 - WebSocket - The available tee times will be updated in real time when another user books or cancels a tee time. 
 
+## CSS Deliverable
+
+For this deliverable I properly styled my application to it's final appearance.
+
+- Properly styled header, footer, and content body
+- Navigation - created functional navbar that collapses into a dropdown small screen sizes
+- Responsive to resizing - Used flex display, grid display, and @media to ensure my application looks good on all screen sizes
+- Application elements - styled the tee times as well as the reservation history to look appealing and easy to understand
+- Application text content - Used appropriate colors and consistent fonts
+- Application images - Integrated the golf course images to look appealing
