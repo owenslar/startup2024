@@ -1,0 +1,15 @@
+.text-primary {
+    color: #ffffff !important;
+}
+.bg-primary {
+    background-color: #187618 !important;
+}
+.btn-primary {
+    background-color: #187618 !important;
+    border-color: #187618 !important;
+}
+.navbar-brand {
+    padding-left: 0.3em;
+    border-bottom: solid #fff thin;
+}
+
