@@ -21,7 +21,9 @@ menu {
     list-style: none;
 }
 .text-primary {
-    color: #fff !important;
+    /* color: #fff !important; */
+    /* color: #777 !important; */
+    color: #000 !important;
 }
 .bg-primary {
     background-color: #187618 !important;
