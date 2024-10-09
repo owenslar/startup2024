@@ -27,3 +27,6 @@ h2 {
 h2 {
     text-align: center;
 }
+input:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}

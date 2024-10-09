@@ -3,6 +3,7 @@ body {
     flex-direction: column;
     min-width: 375px;
     background-color: #9dc99d;
+    /* background-color: #fff; */
 }
 header {
     flex: 0 80px;
@@ -23,6 +24,7 @@ menu {
 .text-primary {
     /* color: #fff !important; */
     /* color: #777 !important; */
+    /* color: #187618 !important; */
     color: #000 !important;
 }
 .bg-primary {
@@ -30,6 +32,7 @@ menu {
 }
 .bg-secondary {
     background-color: #9dc99d !important;
+    /* background-color: #fff !important; */
 }
 .btn-primary {
     background-color: #187618 !important;
