@@ -1,8 +1,15 @@
+:root {
+ --primary: #187618;
+ --text: #352624;
+ --background: #e9f4e9;
+ --background-secondary: #d6e1d6;
+}
+
 body {
     display: flex;
     flex-direction: column;
     min-width: 375px;
-    background-color: #9dc99d;
+    background-color: var(--background);
     /* background-color: #fff; */
 }
 header {
@@ -25,18 +32,18 @@ menu {
     /* color: #fff !important; */
     /* color: #777 !important; */
     /* color: #187618 !important; */
-    color: #000 !important;
+    color: var(--text) !important;
 }
 .bg-primary {
-    background-color: #187618 !important;
+    background-color: var(--primary) !important;
 }
 .bg-secondary {
-    background-color: #9dc99d !important;
+    background-color: var(--background) !important;
     /* background-color: #fff !important; */
 }
 .btn-primary {
-    background-color: #187618 !important;
-    border-color: #187618 !important;
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
 }
 .navbar-brand {
     padding-left: 0.3em;

@@ -9,9 +9,9 @@
 .card {
     display: grid;
     grid-template-rows: 1fr 1fr;
-    border: 1px solid #000;
+    border: 1px solid var(--text);
     border-radius: 5px;
-    background-color: #ddd;
+    background-color: var(--background-secondary);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .card:hover {
@@ -29,4 +29,9 @@ h2 {
 }
 input:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    object-fit: fill;
+    height: 250px;
 }
