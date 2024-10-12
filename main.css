@@ -13,7 +13,7 @@ body {
     /* background-color: #fff; */
 }
 header {
-    flex: 0 80px;
+    flex: 0 60px;
 }
 main {
     flex: 1 calc(100vh - 110px);
@@ -54,6 +54,7 @@ menu {
 }
 footer {
     flex: 0 30px;
+    margin-top: 20px;
 }
 footer a {
     float: right;
@@ -64,7 +65,7 @@ footer a {
     align-items: center;
     justify-content: center;
 }
-@media (max-height: 600px) {
+/* @media (max-height: 600px) {
     header {
         display: none;
     }
@@ -74,4 +75,4 @@ footer a {
     main {
         flex: 1 100vh;
     }
-}
+} */
