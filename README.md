@@ -46,8 +46,8 @@ For this deliverable I built out the basic structure of my application using HTM
 For this deliverable I properly styled my application to it's final appearance.
 
 - Properly styled header, footer, and content body
-- Navigation - created functional navbar that collapses into a dropdown small screen sizes
-- Responsive to resizing - Used flex display, grid display, and @media to ensure my application looks good on all screen sizes
-- Application elements - styled the tee times as well as the reservation history to look appealing and easy to understand
-- Application text content - Used appropriate colors and consistent fonts
-- Application images - Integrated the golf course images to look appealing
+- Navigation - created functional navbar that collapses into a dropdown for small screen sizes
+- Responsive to resizing - Used flex display and grid display to ensure my application looks good on all screen sizes
+- Application elements - Styled the tee times as well as the reservation history to look appealing and easy to understand
+- Application text content - Used appropriate colors and consistent fonts using CSS variables
+- Application images - Integrated the golf course images to look appealing, styled all tee time images to be the same size
