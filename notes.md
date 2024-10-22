@@ -1,5 +1,21 @@
 # CS 260 notes
 
+- console commands
+     - chmod: change mode (changes permissions of file or dir)
+     - pwd: print working directory
+     - cd: change directory
+     - ls: list everyting in curr dir
+     - vim: opens vim text editor
+     - nano: opens nano text editor
+     - mkdir: makes a new directory
+     - mv: moves a file
+     - rm: removes a file
+     - man: displays the manual or help page
+     - ssh: connects to a remote server (secure shell)
+     - ps: shows the currently running processes
+     - wget: downloads files from the web 
+     - sudo: executes commands as the superuser
+     - ls -la: lists all files in long format (including hidden files)
 - git commands
      ```
      git init
@@ -110,3 +126,34 @@
                crossorigin="anonymous"
           /> 
           ```
+
+- Midterm Notes
+     - link elements allow you to reference other resources (stylesheets, icons, etc.)
+     - div tags allow you to group content to apply effects to them as a whole
+     - use # to refer to an id, use . to refer to a class
+     - padding adds space within an element, margin adds space on the outside of an element
+     - for loop in JS: for (initialization; condition; increment){}
+     - switch in JS: 
+     ```
+     switch (expression) {
+          case value1:
+               // code to execute if expression matches value1
+               break;
+          case value2:
+               // code to execute if expression matches value2
+               break;
+          default:
+               // code to execute if no case matches
+     }
+     ```
+     - object in JS: 
+     ```
+     let obj = {
+          key1: value1,
+          key2: value2,
+          key3: value3
+     }
+     ```
+     - a DNS A record can only point to an IP address, not another A record
+     - port 443 is reserved for HTTPS, port 80 is reserved for HTTP, and port 22 is reserved for SSH (secure shell)
+     - 
