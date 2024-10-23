@@ -157,3 +157,13 @@
      - a DNS A record can only point to an IP address, not another A record
      - port 443 is reserved for HTTPS, port 80 is reserved for HTTP, and port 22 is reserved for SSH (secure shell)
      - 
+
+- Sequence for NPM
+     - Create your project directory
+     - Initialize it for use with NPM by running npm init -y
+     - Make sure .gitignore file contains node_modules
+     - Install any desired packages with npm install \<package name here\>
+     - Add require('\<package name here\>') to your application's JavaScript
+     - Use the code the package provides in your JavaScript
+     - Run your code with node index.js
+
