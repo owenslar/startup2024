@@ -167,3 +167,6 @@
      - Use the code the package provides in your JavaScript
      - Run your code with node index.js
 
+- Converting to React Notes
+     - to use bootstrap in jsx: ` import 'bootstrap/dist/css/bootstrap.min.css'; `
+     
