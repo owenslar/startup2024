@@ -1,38 +1,44 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './login/login';
+import { Book } from './book/book';
+import { Data } from './data/data';
+import { About } from './about/about';
 
 export default function App() {
   return (
+  <BrowserRouter>
   <div>
     <header>
         <nav className="navbar navbar-expand-md bg-primary navbar-dark">
             <div className="container-fluid">
-                <a className="navbar-brand" href="index.html">
+                <NavLink className="navbar-brand" to="">
                     <img src="favicon-2.ico" alt="logo" style={{ width: '30px', height: '30px' }} />
                     BookATeeTime<sup>&reg;</sup>
-                </a>
+                </NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="collapseNavbar">
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="index.html">Home</a>
+                            <NavLink className="nav-link" to=''>Login</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="book.html">Book a Tee Time</a>
+                            <NavLink className="nav-link" to="book">Book a Tee Time</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="data.html">Your Reservations</a>
+                            <NavLink className="nav-link" to="data">Your Reservations</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="about.html">About</a>
+                            <NavLink className="nav-link" to="about">About</NavLink>
                         </li>
                     </ul>
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="index.html">Account</a>
+                            <NavLink className="nav-link" to="">Account</NavLink>
                         </li>
                     </ul>
                 </div>
@@ -40,7 +46,13 @@ export default function App() {
         </nav>
     </header>
 
-    <main>App components go here</main>
+    <Routes>
+      <Route path='/' element={<Login />} exact />
+      <Route path='/book' element={<Book />} />
+      <Route path='/data' element={<Data />} />
+      <Route path='/about' element={<About />} />
+      <Route path='*' element={<NotFound />} />
+    </Routes>
 
     <footer className="bg-primary text-white-50">
         <div className="container-fluid">
@@ -49,5 +61,10 @@ export default function App() {
         </div>
     </footer>
   </div>
+  </BrowserRouter>
   );
+}
+
+function NotFound() {
+  return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
 }
