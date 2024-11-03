@@ -15,7 +15,7 @@ export default function App() {
           <nav className="navbar navbar-expand-md bg-primary navbar-dark">
             <div className="container-fluid">
               <NavLink className="navbar-brand" to="">
-                <img src="favicon-2.ico" alt="logo" style={{ width: '30px', height: '30px' }} />
+                <img src="favicon-2.ico" alt="logo" className="favimg" />
                 BookATeeTime<sup>&reg;</sup>
               </NavLink>
               <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">

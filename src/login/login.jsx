@@ -14,7 +14,7 @@ export function Login() {
                     <span className="input-group-text">Password</span>
                     <input className="form-control" type="password" placeholder="password" />
                 </div>
-                <button type="submit" className="btn btn-primary">Login</button>
+                <button type="submit" className="btn btn-primary login-button">Login</button>
                 <button type="submit" className="btn btn-secondary">Create</button>
             </form>
         </div>

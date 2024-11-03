@@ -68,6 +68,14 @@ footer a {
     align-items: center;
     justify-content: center;
 }
+.favimg {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+.login-button {
+    margin-right: 5px;
+}
 /* @media (max-height: 600px) {
     header {
         display: none;
