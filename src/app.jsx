@@ -6,8 +6,13 @@ import { Login } from './login/login';
 import { Book } from './book/book';
 import { Data } from './data/data';
 import { About } from './about/about';
+import { AuthState } from './login/authState';
 
 export default function App() {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
   return (
     <BrowserRouter>
       <div className="body">
@@ -26,20 +31,26 @@ export default function App() {
                   <li className="nav-item">
                     <NavLink className="nav-link" to=''>Login</NavLink>
                   </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link" to="book">Book a Tee Time</NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link" to="data">Your Reservations</NavLink>
-                  </li>
+                  {authState === AuthState.Authenticated && (
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="book">Book a Tee Time</NavLink>
+                    </li>
+                  )}
+                  {authState === AuthState.Authenticated && (
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="data">Your Reservations</NavLink>
+                    </li>
+                  )}
                   <li className="nav-item">
                     <NavLink className="nav-link" to="about">About</NavLink>
                   </li>
                 </ul>
                 <ul className="navbar-nav ms-auto">
-                  <li className="nav-item">
-                    <NavLink className="nav-link" to="">Account</NavLink>
-                  </li>
+                  {authState === AuthState.Authenticated && (
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="">Account</NavLink>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -47,7 +58,20 @@ export default function App() {
         </header>
 
         <Routes>
-          <Route path='/' element={<Login />} exact />
+          <Route 
+            path='/' 
+            element={
+              <Login 
+                serName={userName} 
+                authState={authState} 
+                onAuthChange={(userName, authState) => {
+                  setAuthState(authState);
+                  setUserName(userName);
+                }}
+              />
+            } 
+            exact 
+          />
           <Route path='/book' element={<Book />} />
           <Route path='/data' element={<Data />} />
           <Route path='/about' element={<About />} />
