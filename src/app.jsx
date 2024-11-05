@@ -62,7 +62,7 @@ export default function App() {
             path='/' 
             element={
               <Login 
-                serName={userName} 
+                userName={userName} 
                 authState={authState} 
                 onAuthChange={(userName, authState) => {
                   setAuthState(authState);

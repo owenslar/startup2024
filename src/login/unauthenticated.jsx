@@ -19,7 +19,7 @@ export function Unauthenticated(props) {
     }
 
     return (
-        <>
+        <div className="container">
             <div className="login">
                 <div className="input-group mb-3">
                     <span className="input-group-text">Email</span>
@@ -29,15 +29,17 @@ export function Unauthenticated(props) {
                     <span className="input-group-text">Password</span>
                     <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" />
                 </div>
-                <Button className="login-button" variant="primary" onClick={() => loginUser()} disabled={!userName || !password}>
-                    Login
-                </Button>
-                <Button variant="secondary" onClick={() => createUser()} disabled={!userName || !password}>
-                    Create
-                </Button>
+                <div className="d-flex gap-1">
+                    <Button className="login-button" variant="primary" onClick={() => loginUser()} disabled={!userName || !password}>
+                        Login
+                    </Button>
+                    <Button variant="secondary" onClick={() => createUser()} disabled={!userName || !password}>
+                        Create
+                    </Button>
+                </div>
             </div>
 
             <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
-        </>
+        </div>
     );  
 }
