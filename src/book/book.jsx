@@ -20,7 +20,7 @@ export function Book() {
                     <p className="card-text">$40</p>
                     <p className="card-text">2-4 golfers</p>
                     <p className="card-text">Current Weather: Fair</p>
-                    <input type="button" value="Book" class="btn btn-primary" />
+                    <input type="button" value="Book" className="btn btn-primary" />
                 </div>
             </div>
             <div className="card" style={{ width: '300px' }}>
@@ -31,7 +31,7 @@ export function Book() {
                     <p className="card-text">$55</p>
                     <p className="card-text">1 golfer</p>
                     <p className="card-text">Current Weather: Fair</p>
-                    <input type="button" value="Book" class="btn btn-primary" />
+                    <input type="button" value="Book" className="btn btn-primary" />
                 </div>
             </div>
             <div className="card" style={{ width: '300px' }}>
@@ -42,7 +42,7 @@ export function Book() {
                     <p className="card-text">$65</p>
                     <p className="card-text">2-4 golfers</p>
                     <p className="card-text">Current Weather: Fair</p>
-                    <input type="button" value="Book" class="btn btn-primary" />
+                    <input type="button" value="Book" className="btn btn-primary" />
                 </div>
             </div>
             <div className="card" style={{ width: '300px' }}>
