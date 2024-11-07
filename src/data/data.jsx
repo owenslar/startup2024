@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TeeTimeContext } from '../app';
+
 import './data.css';
 
 export function Data() {
+    const { bookedTeeTimes, setBookedTeeTimes } = useContext(TeeTimeContext);
+
+    const handleCancel = (teeTime) => {
+        const updatedBookedTeeTimes = bookedTeeTimes.filter((time) => time.id !== teeTime.id);
+        setBookedTeeTimes(updatedBookedTeeTimes);
+    }
+
   return (
     <main className="container-fluid text-center bg-secondary">
         <div className="text-right text-primary">
@@ -13,7 +22,6 @@ export function Data() {
                 <table className="table table-striped-columns border text-primary">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Status</th>
                             <th>Date</th>
                             <th>Time</th>
@@ -22,30 +30,22 @@ export function Data() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Reserved</td>
-                            <td>October 5, 2024</td>
-                            <td>10:05 am</td>
-                            <td><a href="https://www.sleepyridgegolf.com">The Links At Sleepy Ridge, Orem, Utah</a></td>
-                            <td><button type="button" className="btn btn-primary">Change</button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Reserved</td>
-                            <td>October 6, 2024</td>
-                            <td>12:15 pm</td>
-                            <td><a href="https://www.riversidecountryclub.org">Riverside Country Club, Provo, Utah</a></td>
-                            <td><button type="button" className="btn btn-primary">Change</button></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Cancelled</td>
-                            <td>September 28, 2024</td>
-                            <td>9:30 am</td>
-                            <td><a href="https://www.timpanogosgolf.com">Timpanogos Golf Club, Provo, Utah</a></td>
-                            <td><button type="button" className="btn btn-primary">Change</button></td>
-                        </tr>
+                        {bookedTeeTimes.length > 0 ? (
+                            bookedTeeTimes.map((teeTime, index) => (
+                                <tr key={index}>
+                                    <td>{teeTime.status}</td>
+                                    <td>{teeTime.date}</td>
+                                    <td>{teeTime.time}</td>
+                                    <td><a href={teeTime.link}>{teeTime.course}</a></td>
+                                    <td><button type="button" className="btn btn-primary" onClick={() => handleCancel(teeTime)}>Cancel</button></td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="5">No reservations found</td>
+                            </tr>
+
+                        )}
                     </tbody>
                 </table>
             </div>
