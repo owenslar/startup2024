@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TeeTimeContext } from '../app';
 import './book.css';
 
 export function Book() {
     const navigate = useNavigate();
     const [teeTimes, setTeeTimes] = useState([]);
-    const [bookedTeeTimes, setBookedTeeTimes] = useState([]);
+    const { bookedTeeTimes, setBookedTeeTimes } = useContext(TeeTimeContext);
 
     const fetchWeatherData = async (course) => {
         // simulating a delay in fetching weather data
@@ -79,17 +80,19 @@ export function Book() {
                 },
             ];
 
-            setTeeTimes(data);
+            const filteredData = data.filter(teeTime => !bookedTeeTimes.some(booked => booked.id === teeTime.id));
+            
+            setTeeTimes(filteredData);
 
 
-            data.forEach(async (teeTime) => {
+            filteredData.forEach(async (teeTime) => {
                 const weather = await fetchWeatherData(teeTime.course);
                 setTeeTimes(prevTeeTimes => prevTeeTimes.map(t =>t.id === teeTime.id ? { ...t, weather } : t));
             });
         };
 
         fetchTeeTimes();
-    }, []);
+    }, [bookedTeeTimes]);
 
     function handleBook(teeTime) {
         const updatedBookedTeeTimes = [...bookedTeeTimes, teeTime];
@@ -97,8 +100,8 @@ export function Book() {
 
         setBookedTeeTimes(updatedBookedTeeTimes);
         setTeeTimes(updatedTeeTimes);
-        
-        navigate('/data', { state: { bookedTeeTimes: [...bookedTeeTimes, teeTime] } });
+
+        navigate('/data', { state: { bookedTeeTimes: updatedBookedTeeTimes } });
     }
 
   return (
@@ -129,49 +132,3 @@ export function Book() {
     </main>
     );
 }
-
-
-{/* <div class="card" style="width:300px">
-                <img class="card-img-top img-fluid" alt="timpanogosGCimg" src="https://www.timpanogosgolf.com/wp-content/uploads/2022/01/Photo-Dec-05-8-30-41-PM-scaled.jpg" />
-                <div class="card-body">
-                    <h4 class="card-title">Timpanogos Golf Club</h4>
-                    <p class="card-text">Tomorrow, 2:00pm</p>
-                    <p class="card-text">$40</p>
-                    <p class="card-text">2-4 golfers</p>
-                    <p class="card-text">Current Weather: Fair</p>
-                    <input type="button" value="Book" class="btn btn-primary" />
-                </div>
-            </div>
-            <div class="card" style="width:300px">
-                <img class="card-img-top img-fluid" alt="linksatsleepyridgeimg" src="https://golfcoursegurus.com/photos/utah/sleepyridge/large/Sleepy-Ridge-clubhouse-mountain.jpg" />
-                <div class="card-body">
-                    <h4 class="card-title">The Links at Sleepy Ridge</h4>
-                    <p class="card-text">Tomorrow, 2:05pm</p>
-                    <p class="card-text">$55</p>
-                    <p class="card-text">2-4 golfers</p>
-                    <p class="card-text">Current Weather: Fair</p>
-                    <input type="button" value="Book" class="btn btn-primary" />
-                </div>
-            </div>
-            <div class="card" style="width:300px">
-                <img class="card-img-top img-fluid" alt="riversideCCimg" src="https://media.licdn.com/dms/image/v2/C4D1BAQFmAYoU9h3HFg/company-background_10000/company-background_10000/0/1625267164271/riverside_country_club_provo_cover?e=2147483647&v=beta&t=gdsiAv_j3bA-YADzbZG98aX5b8HJ4d0Fqs79fy__fw4" />
-                <div class="card-body">
-                    <h4 class="card-title">Riverside Country Club</h4>
-                    <p class="card-text">Tomorrow, 3:45pm</p>
-                    <p class="card-text">$40</p>
-                    <p class="card-text">1-2 golfers</p>
-                    <p class="card-text">Current Weather: Fair</p>
-                    <input type="button" value="Book" class="btn btn-primary" />
-                </div>
-            </div>
-            <div class="card" style="width:300px">
-                <img class="card-img-top img-fluid" alt="timpanogosGCimg" src="https://www.timpanogosgolf.com/wp-content/uploads/2022/01/Photo-Dec-05-8-30-41-PM-scaled.jpg" />
-                <div class="card-body">
-                    <h4 class="card-title">Timpanogos Golf Club</h4>
-                    <p class="card-text">Tomorrow, 6:30pm</p>
-                    <p class="card-text">$35</p>
-                    <p class="card-text">1-2 golfers</p>
-                    <p class="card-text">Current Weather: Fair</p>
-                    <input type="button" value="Book" class="btn btn-primary" />
-                </div>
-            </div> */}
