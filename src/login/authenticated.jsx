@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 
+import './authenticated.css';
+
 export function Authenticated(props) {
     const navigate = useNavigate();
 
@@ -13,13 +15,15 @@ export function Authenticated(props) {
 
     return (
         <div className="login">
-            <span className='text-primary'>{props.userName}</span>
-                <Button variant="primary" onClick={() => navigate('/book')}>
-                    Book
-                </Button>
-                <Button variant="secondary" onClick={() => logout()}>
-                    Logout
-                </Button>
+            <h3 className='text-primary mb-3'>Signed in as: <span className="login-username">{props.userName}</span></h3>
+            <div className="d-flex gap-1">
+                    <Button variant="primary" onClick={() => navigate('/book')}>
+                        Book
+                    </Button>
+                    <Button variant="secondary" onClick={() => logout()}>
+                        Logout
+                    </Button>
+            </div>
         </div>
     );
 }
