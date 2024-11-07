@@ -3,7 +3,7 @@ import { TeeTimeContext } from '../app';
 
 import './data.css';
 
-export function Data() {
+export function Data(props) {
     const { bookedTeeTimes, setBookedTeeTimes } = useContext(TeeTimeContext);
 
     const handleCancel = (teeTime) => {
@@ -15,7 +15,7 @@ export function Data() {
     <main className="container-fluid text-center bg-secondary">
         <div className="text-right text-primary">
             Signed in as:
-            <span className="text-right text-primary">Username</span>
+            <span className="login-username"> {props.userName}</span>
         </div>
         <h2 className="text-primary">Your Reservation History</h2> <br />
             <div className="container-fluid text-center table-wrapper">

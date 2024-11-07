@@ -35,3 +35,7 @@ input:hover {
     object-fit: fill;
     height: 250px;
 }
+.login-username {
+    color: var(--primary);
+    font-weight: bold;
+}

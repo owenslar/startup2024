@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { TeeTimeContext } from '../app';
 import './book.css';
 
-export function Book() {
+export function Book(props) {
     const navigate = useNavigate();
     const [teeTimes, setTeeTimes] = useState([]);
     const { bookedTeeTimes, setBookedTeeTimes } = useContext(TeeTimeContext);
@@ -108,7 +108,7 @@ export function Book() {
     <main className="container-fluid text-center bg-secondary">
         <div className="text-right text-primary">
             Signed in as:
-            <span className="text-right text-primary">Username</span>
+            <span className="login-username"> {props.userName}</span>
         </div>
         <h2 className="text-primary">Available Tee Times</h2>
         <div className="container mt-3">

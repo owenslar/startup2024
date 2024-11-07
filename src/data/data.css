@@ -25,3 +25,7 @@ button:hover {
 .table-wrapper {
     overflow: auto;
 }
+.login-username {
+    color: var(--primary);
+    font-weight: bold;
+}

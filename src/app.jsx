@@ -76,8 +76,8 @@ export default function App() {
               } 
               exact 
             />
-            <Route path='/book' element={<Book />} />
-            <Route path='/data' element={<Data />} />
+            <Route path='/book' element={<Book userName={userName} />} />
+            <Route path='/data' element={<Data userName={userName} />} />
             <Route path='/about' element={<About />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
