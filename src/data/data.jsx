@@ -17,7 +17,7 @@ export function Data(props) {
             Signed in as:
             <span className="login-username"> {props.userName}</span>
         </div>
-        <h2 className="text-primary">Your Reservation History</h2> <br />
+        <h2 className="text-primary">Your Reservations</h2> <br />
             <div className="container-fluid text-center table-wrapper">
                 <table className="table table-striped-columns border text-primary">
                     <thead>
