@@ -51,3 +51,17 @@ For this deliverable I properly styled my application to it's final appearance.
 - Application elements - Styled the tee times as well as the reservation history to look appealing and easy to understand
 - Application text content - Used appropriate colors and consistent fonts using CSS variables
 - Application images - Integrated the golf course images to look appealing, styled all tee time images to be the same size
+
+## React Deliverable
+
+For this deliverable I used JavaScript and React so that my application completely works for a single user. I included placeholders in my code to allow for future technologies.
+
+- Bundled and Transpiled
+- Components - Login, Booking Page, Reservations Page, and About Page
+    - login - When you login it takes you to the booking page, cannot navigate there without logging in
+    - database - included a function that mocks fetching tee time data from my database, currently have the tee time data hard-coded and retured from that function
+    - WebSocket - Currently the tee-times display or stop displaying based on if they are booked by a single user. In the future they will stop displaying for all users when a tee time is booked.
+    - application logic - When a tee time is booked, it takes the user to the reservation page, and displayes the booked tee time on their reservations table, and the tee time is no longer available on the booking page. When that tee time is cancelled from the reservation page, it shows up again on the booking page.
+    - Service - I currently call a function that mocks calling an API for the weatehr at a given location. The function currenlty waits for a second then returns 'Sunny'
+- Router - Routing between all components works, collapsable navbar still functional within React
+- Hooks - used UseState, UseContext, and UseEffect to implement the functionality needed for the application.
