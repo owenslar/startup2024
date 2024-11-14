@@ -8,9 +8,28 @@ export function Book(props) {
     const [teeTimes, setTeeTimes] = useState([]);
     const { bookedTeeTimes, setBookedTeeTimes } = useContext(TeeTimeContext);
 
-    const fetchWeatherData = async (course) => {
-        // Fetch weather data
-        
+    const fetchWeatherData = async (latitude, longitude) => {
+        try {
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,rain,weather_code`;
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('Full Weather Data:', data); // Logs the full response
+    
+            // Access temperature and humidity directly from 'data.current'
+            const currentWeather = {
+                temperature: data.current.temperature_2m,
+                humidity: data.current.relative_humidity_2m
+            };
+            return currentWeather;
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+            return { temperature: 'Error', humidity: 'Error' };
+        }
     }
 
     useEffect(() => {
@@ -66,7 +85,7 @@ export function Book(props) {
                         <p className="card-text">{teeTime.date}, {teeTime.time}</p>
                         <p className="card-text">{teeTime.price}</p>
                         <p className="card-text">{teeTime.golfers}</p>
-                        <p className="card-text">Current Weather: {teeTime.weather}</p>
+                        <p className="card-text">Temperature: {teeTime.weather?.temperature}°C, Humidity: {teeTime.weather?.humidity}%</p>
                         <input type="button" value="Book" className="btn btn-primary" onClick={() => handleBook(teeTime)} />
                     </div>
                 </div>

@@ -66,7 +66,9 @@ const teeTimeData = { data: [
         golfers: '2-4 golfers',
         weather: 'Loading...',
         img: 'https://www.timpanogosgolf.com/wp-content/uploads/2022/01/Photo-Dec-05-8-30-41-PM-scaled.jpg',
-        status: 'Reserved'
+        status: 'Reserved',
+        latitude: '40.20394',
+        longitude: '-111.64808'
     },
     {
         id: 2,
@@ -78,7 +80,9 @@ const teeTimeData = { data: [
         golfers: '1 golfer',
         weather: 'Loading...',
         img: 'https://golfcoursegurus.com/photos/utah/sleepyridge/large/Sleepy-Ridge-clubhouse-mountain.jpg',
-        status: 'Reserved'
+        status: 'Reserved',
+        latitude: '40.284927',
+        longitude: '-111.742004'
     },
     {
         id: 3,
@@ -90,7 +94,9 @@ const teeTimeData = { data: [
         golfers: '2-4 golfers',
         weather: 'Loading...',
         img: 'https://media.licdn.com/dms/image/v2/C4D1BAQFmAYoU9h3HFg/company-background_10000/company-background_10000/0/1625267164271/riverside_country_club_provo_cover?e=2147483647&v=beta&t=gdsiAv_j3bA-YADzbZG98aX5b8HJ4d0Fqs79fy__fw4',
-        status: 'Reserved'
+        status: 'Reserved',
+        latitude: '40.2689972',
+        longitude: '-111.6570931'
     },
     {
         id: 4,
@@ -102,7 +108,9 @@ const teeTimeData = { data: [
         golfers: '2-4 golfers',
         weather: 'Loading...',
         img: 'https://media.licdn.com/dms/image/v2/C4D1BAQFmAYoU9h3HFg/company-background_10000/company-background_10000/0/1625267164271/riverside_country_club_provo_cover?e=2147483647&v=beta&t=gdsiAv_j3bA-YADzbZG98aX5b8HJ4d0Fqs79fy__fw4',
-        status: 'Reserved'
+        status: 'Reserved',
+        latitude: '40.2689972',
+        longitude: '-111.6570931'
     },
     {
         id: 5,
@@ -114,7 +122,9 @@ const teeTimeData = { data: [
         golfers: '1-2 golfers',
         weather: 'Loading...',
         img: 'https://www.timpanogosgolf.com/wp-content/uploads/2022/01/Photo-Dec-05-8-30-41-PM-scaled.jpg',
-        status: 'Reserved'
+        status: 'Reserved',
+        latitude: '40.20394',
+        longitude: '-111.64808'
     },
     {
         id: 6,
@@ -126,7 +136,9 @@ const teeTimeData = { data: [
         golfers: '1 golfer',
         weather: 'Loading...',
         img: 'https://golfcoursegurus.com/photos/utah/sleepyridge/large/Sleepy-Ridge-clubhouse-mountain.jpg',
-        status: 'Reserved'
+        status: 'Reserved',
+        latitude: '40.284927',
+        longitude: '-111.742004'
     },
     {
         id: 7,
@@ -138,7 +150,9 @@ const teeTimeData = { data: [
         golfers: '2-4 golfers',
         weather: 'Loading...',
         img: 'https://media.licdn.com/dms/image/v2/C4D1BAQFmAYoU9h3HFg/company-background_10000/company-background_10000/0/1625267164271/riverside_country_club_provo_cover?e=2147483647&v=beta&t=gdsiAv_j3bA-YADzbZG98aX5b8HJ4d0Fqs79fy__fw4',
-        status: 'Reserved'
+        status: 'Reserved',
+        latitude: '40.2689972',
+        longitude: '-111.6570931'
     },
     {
         id: 8,
@@ -150,6 +164,8 @@ const teeTimeData = { data: [
         golfers: '1-2 golfers',
         weather: 'Loading...',
         img: 'https://www.timpanogosgolf.com/wp-content/uploads/2022/01/Photo-Dec-05-8-30-41-PM-scaled.jpg',
-        status: 'Reserved'
+        status: 'Reserved',
+        latitude: '40.20394',
+        longitude: '-111.64808'
     }
 ]};
