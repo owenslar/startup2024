@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
+const uuid = require('uuid');
 
 app.use(express.static('public'));
+app.use(express.json());
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -9,9 +11,7 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-const uuid = require('uuid');
-
-app.use(express.json());
+const users = {};
 
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
