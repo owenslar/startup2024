@@ -5,7 +5,7 @@ const uuid = require('uuid');
 app.use(express.static('public'));
 app.use(express.json());
 
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
