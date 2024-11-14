@@ -9,86 +9,30 @@ export function Book(props) {
     const { bookedTeeTimes, setBookedTeeTimes } = useContext(TeeTimeContext);
 
     const fetchWeatherData = async (course) => {
-        // simulating a delay in fetching weather data
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        return 'Sunny';
+        // Fetch weather data
+        
     }
 
     useEffect(() => {
         const fetchTeeTimes = async () => {
-            // simulating a fetch call to my database holding the tee time data
-            const data = [
-                {
-                    id: 1,
-                    course: 'Timpanogos Golf Club',
-                    link: 'https://www.timpanogosgolf.com',
-                    date: 'October 5',
-                    time: '9:30am',
-                    price: '$40',
-                    golfers: '2-4 golfers',
-                    weather: 'Loading...',
-                    img: 'https://www.timpanogosgolf.com/wp-content/uploads/2022/01/Photo-Dec-05-8-30-41-PM-scaled.jpg',
-                    status: 'Reserved'
-                },
-                {
-                    id: 2,
-                    course: 'The Links at Sleepy Ridge',
-                    link: 'https://www.sleepyridgegolf.com',
-                    date: 'October 6',
-                    time: '10:35am',
-                    price: '$55',
-                    golfers: '1 golfer',
-                    weather: 'Loading...',
-                    img: 'https://golfcoursegurus.com/photos/utah/sleepyridge/large/Sleepy-Ridge-clubhouse-mountain.jpg',
-                    status: 'Reserved'
-                },
-                {
-                    id: 3,
-                    course: 'Riverside Country Club',
-                    link: 'https://www.riversidecountryclub.org',
-                    date: 'October 7',
-                    time: '12:45pm',
-                    price: '$65',
-                    golfers: '2-4 golfers',
-                    weather: 'Loading...',
-                    img: 'https://media.licdn.com/dms/image/v2/C4D1BAQFmAYoU9h3HFg/company-background_10000/company-background_10000/0/1625267164271/riverside_country_club_provo_cover?e=2147483647&v=beta&t=gdsiAv_j3bA-YADzbZG98aX5b8HJ4d0Fqs79fy__fw4',
-                    status: 'Reserved'
-                },
-                {
-                    id: 4,
-                    course: 'Riverside Country Club',
-                    link: 'https://www.riversidecountryclub.org',
-                    date: 'October 8',
-                    time: '1:15pm',
-                    price: '$65',
-                    golfers: '2-4 golfers',
-                    weather: 'Loading...',
-                    img: 'https://media.licdn.com/dms/image/v2/C4D1BAQFmAYoU9h3HFg/company-background_10000/company-background_10000/0/1625267164271/riverside_country_club_provo_cover?e=2147483647&v=beta&t=gdsiAv_j3bA-YADzbZG98aX5b8HJ4d0Fqs79fy__fw4',
-                    status: 'Reserved'
-                },
-                {
-                    id: 5,
-                    course: 'Timpanogos Golf Club',
-                    link: 'https://www.timpanogosgolf.com',
-                    date: 'October 9',
-                    time: '3:30pm',
-                    price: '$40',
-                    golfers: '1-2 golfers',
-                    weather: 'Loading...',
-                    img: 'https://www.timpanogosgolf.com/wp-content/uploads/2022/01/Photo-Dec-05-8-30-41-PM-scaled.jpg',
-                    status: 'Reserved'
-                },
-            ];
-
-            const filteredData = data.filter(teeTime => !bookedTeeTimes.some(booked => booked.id === teeTime.id));
-            
-            setTeeTimes(filteredData);
-
-
-            filteredData.forEach(async (teeTime) => {
-                const weather = await fetchWeatherData(teeTime.course);
-                setTeeTimes(prevTeeTimes => prevTeeTimes.map(t =>t.id === teeTime.id ? { ...t, weather } : t));
-            });
+            try{
+                // Fetching tee time data from the backend
+                const response = await fetch('/api/teeTimes');
+                const data = await response.json();
+                      
+                const teeTimesData = data.data
+    
+                const filteredData = teeTimesData.filter(teeTime => !bookedTeeTimes.some(booked => booked.id === teeTime.id));
+                    
+                setTeeTimes(filteredData);
+    
+                for (const teeTime of filteredData) {
+                    const weather = await fetchWeatherData(teeTime.latitude, teeTime.longitude);
+                    setTeeTimes(prevTeeTimes => prevTeeTimes.map(t => t.id === teeTime.id ? { ...t, weather } : t));
+                }
+            } catch (error) {
+                console.error('Error fetching tee times:', error);
+            }
         };
 
         fetchTeeTimes();

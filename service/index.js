@@ -50,8 +50,9 @@ apiRouter.delete('/auth/logout', (req, res) => {
     res.status(204).end();
 });
 
-apiRouter.get('/teeTimes', (req, res) => {
-
+// GetTeeTimes get a list of tee times
+apiRouter.get('/teeTimes', (_req, res) => {
+    res.send(teeTimeData);
 })
 
 const teeTimeData = { data: [
