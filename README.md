@@ -65,3 +65,13 @@ For this deliverable I used JavaScript and React so that my application complete
     - Service - I currently call a function that mocks calling an API for the weatehr at a given location. The function currenlty waits for a second then returns 'Sunny'
 - Router - Routing between all components works, collapsable navbar still functional within React
 - Hooks - used UseState, UseContext, and UseEffect to implement the functionality needed for the application.
+
+## Service Deliverable
+
+For this deliverable I added backend endpoints that handle login/create/logout, and an enpoint that provides the tee time data
+
+- Node.js/Express HTTP Servide - done
+- Static middleware for frontend - done
+- Calls to third party endpoints - Calls a weather API to get current temperature and humidity at golf course, then displays it with the tee time on the booking page
+- Backend service endpoints - Placeholders for login that stores the current user on the server. Endpoint for tee time data
+- Fortend calls service endpoints - I did this using async/await fetch commands
