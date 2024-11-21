@@ -40,9 +40,21 @@ async function createUser(email, password) {
   return user;
 }
 
+// Tee-Time Related Functions
+
+async function getReservedTeeTimes() {
+    return reservationCollection.find({}).toArray();
+}
+
+async function getAvailableTeeTimes(reservedIds) {
+    return teeTimeCollection.find({ id: { $nin: reservedIds } }).toArray();
+}
+
 
 module.exports = {
   getUser,
   getUserByToken,
   createUser,
+  getReservedTeeTimes,
+  getAvailableTeeTimes,
 };
