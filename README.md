@@ -75,3 +75,14 @@ For this deliverable I added backend endpoints that handle login/create/logout, 
 - Calls to third party endpoints - Calls a weather API to get current temperature and humidity at golf course, then displays it with the tee time on the booking page
 - Backend service endpoints - Placeholders for login that stores the current user on the server. Endpoint for tee time data
 - Fortend calls service endpoints - I did this using async/await fetch commands
+
+## DB/Login Deliverable
+
+For this deliverable I associate reserved tee times with the logged in user, store tee time data in the database, and store users in the database.
+
+- MongoDB Atlas database created - done
+- Stores data in MongoDB - stores tee time data, reserved tee time data, and user data
+- User Registration - Creates a new account in the database
+- Existing User - allows them to book tee times associated with their user only
+- Use MongoDB to store credentials - Stores the user's credentials
+- Restricts Functionality - You cannot reserve or cancel a tee time if you are not logged in
