@@ -34,9 +34,14 @@ export function Book(props) {
 
     useEffect(() => {
         const fetchTeeTimes = async () => {
-            try{
+            try {
                 // Fetching tee time data from the backend
-                const response = await fetch('/api/teeTimes');
+                console.log("Fetching tee times...");
+                const response = await fetch('/api/teeTimes', {
+                    method: 'GET',
+                    credentials: 'include', // Include cookies in the request
+                });
+                console.log("Response:", response);
                 const data = await response.json();
                       
                 const teeTimesData = data.data
@@ -55,15 +60,35 @@ export function Book(props) {
         fetchTeeTimes();
     }, [refreshData]);
 
-    function handleBook(teeTime) {
-        const updatedBookedTeeTimes = [...bookedTeeTimes, teeTime];
-        const updatedTeeTimes = teeTimes.filter(t => t.id !== teeTime.id);
+    const handleBook = async (teeTime) => {
+        try {
+            // Send POST request to book the tee time
+            const response = await fetch('/api/teeTimes/book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ teeTimeId: teeTime.id }),
+            });
 
-        setBookedTeeTimes(updatedBookedTeeTimes);
-        setTeeTimes(updatedTeeTimes);
+            if (!response.ok) {
+                throw new Error('Failed to book tee time');
+            }
 
-        navigate('/data', { state: { bookedTeeTimes: updatedBookedTeeTimes } });
-    }
+            const data = await response.json();
+            console.log('Tee time booked:', data);
+
+            // Update the teeTimes list to remove the booked tee time
+            setTeeTimes((prevTeeTimes) => prevTeeTimes.filter(t => t.id !== teeTime.id));
+
+            // Trigger the refresh by updating refreshData
+            setRefreshData(prev => prev + 1);
+
+            navigate('/data'); 
+        } catch (error) {
+            console.error('Error booking tee time:', error);
+        }
+    };
 
   return (
     <main className="container-fluid text-center bg-secondary">

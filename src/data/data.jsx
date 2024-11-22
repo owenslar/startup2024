@@ -1,15 +1,60 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { TeeTimeContext } from '../app';
 
 import './data.css';
 
 export function Data(props) {
     const { refreshData, setRefreshData } = useContext(TeeTimeContext);
+    const [bookedTeeTimes, setBookedTeeTimes] = React.useState([]);
 
-    const handleCancel = (teeTime) => {
-        const updatedBookedTeeTimes = bookedTeeTimes.filter((time) => time.id !== teeTime.id);
-        setBookedTeeTimes(updatedBookedTeeTimes);
-    }
+    useEffect(() => {
+        const fetchBoookedTeeTimes = async () => {
+            try {
+                const response = await fetch('/api/reservations', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch reservations');
+                }
+
+                const data = await response.json();
+                setBookedTeeTimes(data.data);
+            } catch {
+                console.error('Error fetching booked tee times:', error);
+            }
+        };
+
+        fetchBoookedTeeTimes();
+    }, [refreshData]);
+
+
+    const handleCancel = async (teeTime) => {
+        try {
+            const response = await fetch('/api/reservations/cancel', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ teeTimeId: teeTime.id }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to cancel reservation');
+            }
+
+            const result = await response.json();
+            console.log('Reservation cancelled:', result);
+
+            setRefreshData((prev) => prev + 1);
+            setBookedTeeTimes((prev) => prev.filter((t) => t.id !== teeTime.id));
+        } catch {
+            console.error('Error cancelling reservation:', error);
+        }
+    };
 
   return (
     <main className="container-fluid text-center bg-secondary">

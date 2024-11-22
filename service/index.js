@@ -64,11 +64,14 @@ const secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
 secureApiRouter.use(async (req, res, next) => {
+  console.log('Cookies:', req.cookies);
   const authToken = req.cookies[authCookieName];
   const user = await DB.getUserByToken(authToken);
   if (user) {
+    console.log('Authorized user:', user.email);
     next();
   } else {
+    console.log('Unauthorized access attempt');
     res.status(401).send({ msg: 'Unauthorized' });
   }
 });
@@ -95,6 +98,29 @@ secureApiRouter.post('/teeTimes/book', async (req, res) => {
     } catch (err) {
       console.error('Error booking tee time:', err);
       res.status(500).send({ msg: 'Failed to book tee time' });
+    }
+});
+
+secureApiRouter.get('/reservations', async (req, res) => {
+    const userId = req.user._id;
+    try {
+      const reservations = await DB.getReservationsByUser(userId);
+      res.send({ data: reservations });
+    } catch (err) {
+      console.error('Error fetching reservations:', err);
+      res.status(500).send({ msg: 'Failed to fetch reservations' });
+    }
+});
+
+secureApiRouter.post('/reservations/cancel', async (req, res) => {
+    const { teeTimeId } = req.body;
+    const userId = req.user._id;
+    try {
+      await DB.cancelReservation(userId, teeTimeId);
+      res.status(200).send({ msg: 'Reservation cancelled!' });
+    } catch (err) {
+      console.error('Error cancelling reservation:', err);
+      res.status(500).send({ msg: 'Failed to cancel reservation' });
     }
 });
 

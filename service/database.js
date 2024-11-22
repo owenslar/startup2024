@@ -5,9 +5,10 @@ const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
-const db = client.db('simon');
+const db = client.db('startup');
 const userCollection = db.collection('user');
-const scoreCollection = db.collection('score');
+const reservationCollection = db.collection('reservation');
+const teeTimeCollection = db.collection('teeTime');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -56,6 +57,26 @@ async function bookTeeTime(userId, teeTimeId) {
     return reservation;
 }
 
+async function getReservationsByUser(userId) {
+    return reservationCollection
+      .aggregate([
+        { $match: { userId } },
+        { 
+          $lookup: {
+            from: 'teeTime',
+            localField: 'teeTimeId',
+            foreignField: 'id',
+            as: 'teeTime',
+          },
+        },
+        { $unwind: '$teeTime' },
+      ])
+      .toArray();
+}
+
+async function cancelReservation(userId, teeTimeId) {
+    return reservationCollection.deleteOne({ userId, teeTimeId });
+}
 
 module.exports = {
   getUser,
@@ -64,4 +85,6 @@ module.exports = {
   getReservedTeeTimes,
   getAvailableTeeTimes,
   bookTeeTime,
+  getReservationsByUser,
+  cancelReservation,
 };
