@@ -44,11 +44,27 @@ async function createUser(email, password) {
 // Tee-Time Related Functions
 
 async function getReservedTeeTimes() {
-    return reservationCollection.find({}).toArray();
+    try {
+        console.log('Fetching reserved tee times...');
+        const reservedTeeTimes = await reservationCollection.find({}).toArray();
+        console.log('Reserved tee times:', reservedTeeTimes);
+        return reservedTeeTimes;
+    } catch (err) {
+        console.error('Error in getReservedTeeTimes:', err);
+        throw err; // Ensure the error is logged and propagated
+    }
 }
 
 async function getAvailableTeeTimes(reservedIds) {
-    return teeTimeCollection.find({ id: { $nin: reservedIds } }).toArray();
+    try {
+        console.log('Fetching available tee times, excluding:', reservedIds);
+        const availableTeeTimes = await teeTimeCollection.find({ id: { $nin: reservedIds } }).toArray();
+        console.log('Available tee times:', availableTeeTimes);
+        return availableTeeTimes;
+    } catch (err) {
+        console.error('Error in getAvailableTeeTimes:', err);
+        throw err;
+    }
 }
 
 async function bookTeeTime(userId, teeTimeId) {
