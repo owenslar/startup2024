@@ -14,10 +14,10 @@ export default function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
-  const [bookedTeeTimes, setBookedTeeTimes] = useState([]);
+  const [refreshData, setRefreshData] = useState(false);
 
   return (
-    <TeeTimeContext.Provider value={{ bookedTeeTimes, setBookedTeeTimes }}>
+    <TeeTimeContext.Provider value={{ refreshData, setRefreshData }}>
       <BrowserRouter>
         <div className="body">
           <header>

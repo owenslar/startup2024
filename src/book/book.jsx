@@ -6,7 +6,7 @@ import './book.css';
 export function Book(props) {
     const navigate = useNavigate();
     const [teeTimes, setTeeTimes] = useState([]);
-    const { bookedTeeTimes, setBookedTeeTimes } = useContext(TeeTimeContext);
+    const { refreshData, setRefreshData } = useContext(TeeTimeContext);
 
     const fetchWeatherData = async (latitude, longitude) => {
         try {
@@ -40,12 +40,10 @@ export function Book(props) {
                 const data = await response.json();
                       
                 const teeTimesData = data.data
-    
-                const filteredData = teeTimesData.filter(teeTime => !bookedTeeTimes.some(booked => booked.id === teeTime.id));
                     
-                setTeeTimes(filteredData);
+                setTeeTimes(teeTimesData);
     
-                for (const teeTime of filteredData) {
+                for (const teeTime of teeTimesData) {
                     const weather = await fetchWeatherData(teeTime.latitude, teeTime.longitude);
                     setTeeTimes(prevTeeTimes => prevTeeTimes.map(t => t.id === teeTime.id ? { ...t, weather } : t));
                 }
@@ -55,7 +53,7 @@ export function Book(props) {
         };
 
         fetchTeeTimes();
-    }, [bookedTeeTimes]);
+    }, [refreshData]);
 
     function handleBook(teeTime) {
         const updatedBookedTeeTimes = [...bookedTeeTimes, teeTime];

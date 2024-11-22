@@ -4,7 +4,7 @@ import { TeeTimeContext } from '../app';
 import './data.css';
 
 export function Data(props) {
-    const { bookedTeeTimes, setBookedTeeTimes } = useContext(TeeTimeContext);
+    const { refreshData, setRefreshData } = useContext(TeeTimeContext);
 
     const handleCancel = (teeTime) => {
         const updatedBookedTeeTimes = bookedTeeTimes.filter((time) => time.id !== teeTime.id);
