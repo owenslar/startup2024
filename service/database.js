@@ -50,6 +50,12 @@ async function getAvailableTeeTimes(reservedIds) {
     return teeTimeCollection.find({ id: { $nin: reservedIds } }).toArray();
 }
 
+async function bookTeeTime(userId, teeTimeId) {
+    const reservation = { userId, teeTimeId };
+    await reservationCollection.insertOne(reservation);
+    return reservation;
+}
+
 
 module.exports = {
   getUser,
@@ -57,4 +63,5 @@ module.exports = {
   createUser,
   getReservedTeeTimes,
   getAvailableTeeTimes,
+  bookTeeTime,
 };

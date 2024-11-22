@@ -86,6 +86,18 @@ apiRouter.get('/teeTimes', async (_req, res) => {
     }
 });
 
+secureApiRouter.post('/teeTimes/book', async (req, res) => {
+    const { teeTimeId } = req.body;
+    const userId = req.user._id;
+    try {
+      const reservation = await DB.bookTeeTime(userId, teeTimeId);
+      res.status(200).send({ msg: 'Tee time booked!', reservation });
+    } catch (err) {
+      console.error('Error booking tee time:', err);
+      res.status(500).send({ msg: 'Failed to book tee time' });
+    }
+});
+
 // Default error handler
 app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });
