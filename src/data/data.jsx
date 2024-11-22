@@ -22,6 +22,7 @@ export function Data(props) {
                 }
 
                 const data = await response.json();
+                // console.log('Fetched booked tee times:', data.data);
                 setBookedTeeTimes(data.data);
             } catch {
                 console.error('Error fetching booked tee times:', error);
@@ -47,7 +48,7 @@ export function Data(props) {
             }
 
             const result = await response.json();
-            console.log('Reservation cancelled:', result);
+            // console.log('Reservation cancelled:', result);
 
             setRefreshData((prev) => prev + 1);
             setBookedTeeTimes((prev) => prev.filter((t) => t.id !== teeTime.id));
@@ -76,20 +77,22 @@ export function Data(props) {
                     </thead>
                     <tbody>
                         {bookedTeeTimes.length > 0 ? (
-                            bookedTeeTimes.map((teeTime, index) => (
-                                <tr key={index}>
-                                    <td>{teeTime.status}</td>
-                                    <td>{teeTime.date}</td>
-                                    <td>{teeTime.time}</td>
-                                    <td><a href={teeTime.link}>{teeTime.course}</a></td>
-                                    <td><button type="button" className="btn btn-primary" onClick={() => handleCancel(teeTime)}>Cancel</button></td>
-                                </tr>
-                            ))
+                            bookedTeeTimes.map((reservation, index) => {
+                                const teeTime = reservation.teeTime; // Extract the teeTime object
+                                return (
+                                    <tr key={index}>
+                                        <td>{teeTime.status}</td>
+                                        <td>{teeTime.date}</td>
+                                        <td>{teeTime.time}</td>
+                                        <td><a href={teeTime.link}>{teeTime.course}</a></td>
+                                        <td><button type="button" className="btn btn-primary" onClick={() => handleCancel(teeTime)}>Cancel</button></td>
+                                    </tr>
+                                );
+                            })
                         ) : (
                             <tr>
                                 <td colSpan="5">No reservations found</td>
                             </tr>
-
                         )}
                     </tbody>
                 </table>

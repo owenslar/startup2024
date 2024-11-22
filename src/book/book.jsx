@@ -36,12 +36,12 @@ export function Book(props) {
         const fetchTeeTimes = async () => {
             try {
                 // Fetching tee time data from the backend
-                console.log("Fetching tee times...");
+                // console.log("Fetching tee times...");
                 const response = await fetch('/api/teeTimes', {
                     method: 'GET',
                     credentials: 'include', // Include cookies in the request
                 });
-                console.log("Response:", response);
+                // console.log("Response:", response);
                 const data = await response.json();
                       
                 const teeTimesData = data.data
@@ -76,7 +76,7 @@ export function Book(props) {
             }
 
             const data = await response.json();
-            console.log('Tee time booked:', data);
+            // console.log('Tee time booked:', data);
 
             // Update the teeTimes list to remove the booked tee time
             setTeeTimes((prevTeeTimes) => prevTeeTimes.filter(t => t.id !== teeTime.id));

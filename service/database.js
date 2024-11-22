@@ -45,9 +45,9 @@ async function createUser(email, password) {
 
 async function getReservedTeeTimes() {
     try {
-        console.log('Fetching reserved tee times...');
+        // console.log('Fetching reserved tee times...');
         const reservedTeeTimes = await reservationCollection.find({}).toArray();
-        console.log('Reserved tee times:', reservedTeeTimes);
+        // console.log('Reserved tee times:', reservedTeeTimes);
         return reservedTeeTimes;
     } catch (err) {
         console.error('Error in getReservedTeeTimes:', err);
@@ -57,9 +57,9 @@ async function getReservedTeeTimes() {
 
 async function getAvailableTeeTimes(reservedIds) {
     try {
-        console.log('Fetching available tee times, excluding:', reservedIds);
+        // console.log('Fetching available tee times, excluding:', reservedIds);
         const availableTeeTimes = await teeTimeCollection.find({ id: { $nin: reservedIds } }).toArray();
-        console.log('Available tee times:', availableTeeTimes);
+        // console.log('Available tee times:', availableTeeTimes);
         return availableTeeTimes;
     } catch (err) {
         console.error('Error in getAvailableTeeTimes:', err);
