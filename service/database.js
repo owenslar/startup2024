@@ -8,7 +8,7 @@ const client = new MongoClient(uri, {
     tls: true,
     serverSelectionTimeoutMS: 3000,
     autoSelectFamily: false,
-  });
+});
 const db = client.db('startup');
 const userCollection = db.collection('user');
 const reservationCollection = db.collection('reservation');
