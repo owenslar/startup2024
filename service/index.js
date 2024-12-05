@@ -98,12 +98,12 @@ secureApiRouter.post('/teeTimes/book', async (req, res) => {
       const reservation = await DB.bookTeeTime(userId, teeTimeId);
 
       // Notify all clients of the new reservation
-      const message = {
+      broadcasetMessage({
         type: 'teeTimeUpdate',
         action: 'booked',
         teeTimeId: teeTimeId,
-      }
-      wss.broadcast(message);
+      });
+
       res.status(200).send({ msg: 'Tee time booked!', reservation });
     } catch (err) {
       console.error('Error booking tee time:', err);
@@ -129,12 +129,12 @@ secureApiRouter.post('/reservations/cancel', async (req, res) => {
       await DB.cancelReservation(userId, teeTimeId);
 
       // Notify all clients of the cancelled reservation
-      const message = {
+      broadcastMessage({
         type: 'teeTimeUpdate',
         action: 'cancelled',
         teeTimeId: teeTimeId,
-      };
-      wss.broadcast(message);
+      });
+
       res.status(200).send({ msg: 'Reservation cancelled!' });
     } catch (err) {
       console.error('Error cancelling reservation:', err);
@@ -165,4 +165,4 @@ const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-peerProxy(httpService);
+const { broadcastMessage } = peerProxy(httpService);
