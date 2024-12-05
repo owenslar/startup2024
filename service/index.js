@@ -96,6 +96,14 @@ secureApiRouter.post('/teeTimes/book', async (req, res) => {
     const userId = req.user._id;
     try {
       const reservation = await DB.bookTeeTime(userId, teeTimeId);
+
+      // Notify all clients of the new reservation
+      const message = {
+        type: 'teeTimeUpdate',
+        action: 'booked',
+        teeTimeId: teeTimeId,
+      }
+      wss.broadcast(message);
       res.status(200).send({ msg: 'Tee time booked!', reservation });
     } catch (err) {
       console.error('Error booking tee time:', err);
