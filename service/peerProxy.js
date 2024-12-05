@@ -20,12 +20,22 @@ function peerProxy(httpServer) {
     connections.push(connection);
 
     // Forward messages to everyone except the sender
-    ws.on('message', function message(data) {
-      connections.forEach((c) => {
-        if (c.id !== connection.id) {
-          c.ws.send(data);
-        }
-      });
+    ws.on('message', (data) => {
+      let message = {};
+      try {
+        message = JSON.parse(data);
+      } catch (e) {
+        console.error('Invalid JSON:', data);
+        return;
+      }
+
+      if (message.type === "teeTimeUpdate") {
+        connections.forEach((c) => {
+            if (c.id !== connection.id) {
+              c.ws.send(JSON.stringify(message));
+            }
+        });
+      }
     });
 
     // Remove the closed connection so we don't try to forward anymore
