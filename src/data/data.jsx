@@ -8,6 +8,23 @@ export function Data(props) {
     const [bookedTeeTimes, setBookedTeeTimes] = React.useState([]);
 
     useEffect(() => {
+        const ws = new WebSocket('ws://${window.location.host}');
+
+        ws.onmessage = (event) => {
+            const message = JSON.parse(event.data);
+
+            if (message.type === 'teeTimeUpdate') {
+                if (message.action === 'cancelled') {
+                    setRefreshData((prev) => prev + 1);
+                    setBookedTeeTimes((prev) => prev.filter((t) => t.id !== message.teeTimeId));
+                }
+            }
+        };
+
+        return () => ws.close();
+    }, []);
+
+    useEffect(() => {
         const fetchBoookedTeeTimes = async () => {
             try {
                 const response = await fetch('/api/reservations', {
