@@ -127,6 +127,14 @@ secureApiRouter.post('/reservations/cancel', async (req, res) => {
     const userId = req.user._id;
     try {
       await DB.cancelReservation(userId, teeTimeId);
+
+      // Notify all clients of the cancelled reservation
+      const message = {
+        type: 'teeTimeUpdate',
+        action: 'cancelled',
+        teeTimeId: teeTimeId,
+      };
+      wss.broadcast(message);
       res.status(200).send({ msg: 'Reservation cancelled!' });
     } catch (err) {
       console.error('Error cancelling reservation:', err);
