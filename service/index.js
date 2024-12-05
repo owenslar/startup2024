@@ -166,12 +166,3 @@ const httpService = app.listen(port, () => {
 });
 
 peerProxy(httpService);
-
-const wss = new WebSocketServer({ server: httpService });
-wss.broadcast = function broadcast(message) {
-  wss.clients.forEach((client) => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify(message));
-    }
-  });
-};
