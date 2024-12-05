@@ -65,6 +65,16 @@ function peerProxy(httpServer) {
       }
     });
   }, 10000);
+
+  function broadcastMessage(message) {
+    connections.forEach((c) => {
+      c.ws.send(JSON.stringify(message));
+    });
+  }
+
+  return {
+    broadcastMessage,
+  };
 }
 
 module.exports = { peerProxy };
