@@ -8,7 +8,9 @@ export function Data(props) {
     const [bookedTeeTimes, setBookedTeeTimes] = React.useState([]);
 
     useEffect(() => {
-        const ws = new WebSocket(`ws://${window.location.host}/ws`);
+        let port = window.location.port;
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        const ws = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
 
         ws.onmessage = (event) => {
             const message = JSON.parse(event.data);

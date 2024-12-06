@@ -9,10 +9,12 @@ export function Book(props) {
     const { refreshData, setRefreshData } = useContext(TeeTimeContext);
 
     useEffect(() => {
-        const ws = new WebSocket(`ws://${window.location.host}/ws`);
+        let port = window.location.port;
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        const ws = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
 
         ws.onopen = () => {
-            console.log('WebSocket connection established');
+            // console.log('WebSocket connection established');
         };
 
         ws.onmessage = (event) => {
@@ -32,7 +34,7 @@ export function Book(props) {
         };
     
         ws.onclose = () => {
-            console.log('WebSocket connection closed');
+            // console.log('WebSocket connection closed');
         };
 
         return () => ws.close();
@@ -48,7 +50,7 @@ export function Book(props) {
             }
             
             const data = await response.json();
-            console.log('Full Weather Data:', data); // Logs the full response
+            // console.log('Full Weather Data:', data); // Logs the full response
     
             // Access temperature and humidity directly from 'data.current'
             const currentWeather = {
