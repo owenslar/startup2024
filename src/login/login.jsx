@@ -3,15 +3,24 @@ import React from 'react';
 import { Unauthenticated } from './unauthenticated';
 import { Authenticated } from './authenticated';
 import { AuthState } from './authState';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export function Login({ userName, authState, onAuthChange }) {
     const location = useLocation();
+    const navigate = useNavigate();
 
     const effectiveAuthState =
         location.state?.triggeredBy401 && location.state?.authState === AuthState.Unauthenticated
             ? AuthState.Unauthenticated
             : authState;
+
+    useEffect(() => {
+        if (location.state?.triggeredBy401) {
+            navigate(location.pathname, { replace: true, state: { authState: effectiveAuthState } });
+        }
+    }, [location, effectiveAuthState, navigate]);
+
   return (
     <main className="container-fluid text-center bg-secondary loginspace">
         <div>
