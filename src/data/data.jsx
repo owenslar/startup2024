@@ -8,26 +8,8 @@ export function Data(props) {
     const [bookedTeeTimes, setBookedTeeTimes] = React.useState([]);
 
     useEffect(() => {
-        let port = window.location.port;
-        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        const ws = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
-
-        ws.onmessage = (event) => {
-            const message = JSON.parse(event.data);
-
-            if (message.type === 'teeTimeUpdate') {
-                if (message.action === 'cancelled') {
-                    setRefreshData((prev) => prev + 1);
-                    setBookedTeeTimes((prev) => prev.filter((t) => t.id !== message.teeTimeId));
-                }
-            }
-        };
-
-        return () => ws.close();
-    }, []);
-
-    useEffect(() => {
-        const fetchBoookedTeeTimes = async () => {
+        // Function to fetch booked tee times
+        const fetchBookedTeeTimes = async () => {
             try {
                 const response = await fetch('/api/reservations', {
                     method: 'GET',
@@ -41,14 +23,41 @@ export function Data(props) {
                 }
 
                 const data = await response.json();
-                // console.log('Fetched booked tee times:', data.data);
+                // Assuming data.data contains the list of reserved tee times for the current user
                 setBookedTeeTimes(data.data);
-            } catch {
+            } catch (error) {
                 console.error('Error fetching booked tee times:', error);
             }
         };
 
-        fetchBoookedTeeTimes();
+        // Fetch initial reservations
+        fetchBookedTeeTimes();
+
+        // WebSocket connection setup
+
+
+        const port = window.location.port;
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        const ws = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+
+        ws.onmessage = (event) => {
+            const message = JSON.parse(event.data);
+
+            if (message.type === 'teeTimeUpdate') {
+                if (message.action === 'cancelled') {
+                    // Remove the cancelled tee time
+                    setBookedTeeTimes((prev) => prev.filter((t) => t.id !== message.teeTimeId));
+                    setRefreshData((prev) => prev + 1); // Trigger re-fetching
+                }
+                 else if (message.action === 'booked') {
+                    // Add the booked tee time
+                    setBookedTeeTimes((prev) => [...prev, message.teeTime]);
+                    setRefreshData((prev) => prev + 1); // Trigger re-fetching
+                }
+            }
+        };
+
+        return () => ws.close();
     }, [refreshData]);
 
 
