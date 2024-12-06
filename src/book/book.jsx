@@ -8,6 +8,36 @@ export function Book(props) {
     const [teeTimes, setTeeTimes] = useState([]);
     const { refreshData, setRefreshData } = useContext(TeeTimeContext);
 
+    useEffect(() => {
+        const ws = new WebSocket(`ws://${window.location.host}/ws`);
+
+        ws.onopen = () => {
+            console.log('WebSocket connection established');
+        };
+
+        ws.onmessage = (event) => {
+            const message = JSON.parse(event.data);
+
+            if (message.type === 'teeTimeUpdate') {
+                if (message.action === 'booked') {
+                    setRefreshData(prev => prev + 1);
+                } else if (message.action === 'cancelled') {
+                    setRefreshData(prev => prev + 1);
+                }
+            }
+        };
+
+        ws.onerror = (error) => {
+            console.error('WebSocket Error:', error);
+        };
+    
+        ws.onclose = () => {
+            console.log('WebSocket connection closed');
+        };
+
+        return () => ws.close();
+    }, []);
+
     const fetchWeatherData = async (latitude, longitude) => {
         try {
             const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,rain,weather_code`;
