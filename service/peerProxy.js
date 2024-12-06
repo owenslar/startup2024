@@ -7,9 +7,25 @@ function peerProxy(httpServer) {
 
   // Handle the protocol upgrade from HTTP to WebSocket
   httpServer.on('upgrade', (request, socket, head) => {
-    wss.handleUpgrade(request, socket, head, function done(ws) {
-      wss.emit('connection', ws, request);
-    });
+    console.log('Upgrade request recieved for:', request.url);
+    if (request.url.startsWith('/ws')) {
+        if (!socket._handled) {
+            // Mark the socket as handled
+            socket._handled = true;
+    
+            // Handle WebSocket upgrade
+            wss.handleUpgrade(request, socket, head, (ws) => {
+              console.log('WebSocket connection established');
+              wss.emit('connection', ws, request);
+            });
+          } else {
+            // If socket has already been handled, destroy it
+            console.log('Socket already handled, ignoring request');
+          }
+    } else {
+        console.log('Non-WebSocket request, destroying socket');
+        socket.destroy();
+    }
   });
 
   // Keep track of all the connections so we can forward messages
