@@ -98,7 +98,7 @@ secureApiRouter.post('/teeTimes/book', async (req, res) => {
       const reservation = await DB.bookTeeTime(userId, teeTimeId);
 
       // Notify all clients of the new reservation
-      broadcasetMessage({
+      broadcastMessage({
         type: 'teeTimeUpdate',
         action: 'booked',
         teeTimeId: teeTimeId,
