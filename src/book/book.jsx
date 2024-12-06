@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TeeTimeContext } from '../app';
 import './book.css';
+import { AuthState } from '../login/authState';
 
 export function Book(props) {
     const navigate = useNavigate();
@@ -73,6 +74,13 @@ export function Book(props) {
                     method: 'GET',
                     credentials: 'include', // Include cookies in the request
                 });
+
+                if (response.status === 401) {
+                    props.onAuthChange('', AuthState.Unauthenticated);
+                    navigate('/', { state: { authState: AuthState.Unauthenticated, triggeredBy401: true } });
+                    return;
+                }
+
                 // console.log("Response:", response);
                 const data = await response.json();
                       

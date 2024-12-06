@@ -79,7 +79,7 @@ secureApiRouter.use(async (req, res, next) => {
 });
 
 // Get Available Tee Times
-apiRouter.get('/teeTimes', async (_req, res) => {
+secureApiRouter.get('/teeTimes', async (_req, res) => {
     try {
       const reservedTeeTimes = await DB.getReservedTeeTimes();
       const reservedIds = reservedTeeTimes.map((r) => r.teeTimeId);

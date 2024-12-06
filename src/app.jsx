@@ -76,7 +76,10 @@ export default function App() {
               } 
               exact 
             />
-            <Route path='/book' element={<Book userName={userName} />} />
+            <Route path='/book' element={<Book userName={userName} onAuthChange={(userName, authState) => {
+              setAuthState(authState);
+              setUserName(userName);
+            }} />} />
             <Route path='/data' element={<Data userName={userName} />} />
             <Route path='/about' element={<About />} />
             <Route path='*' element={<NotFound />} />

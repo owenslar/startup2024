@@ -3,12 +3,22 @@ import React from 'react';
 import { Unauthenticated } from './unauthenticated';
 import { Authenticated } from './authenticated';
 import { AuthState } from './authState';
+import { useLocation } from 'react-router-dom';
 
 export function Login({ userName, authState, onAuthChange }) {
+    const location = useLocation();
+
+    const effectiveAuthState =
+        location.state?.triggeredBy401 && location.state?.authState === AuthState.Unauthenticated
+            ? AuthState.Unauthenticated
+            : authState;
   return (
     <main className="container-fluid text-center bg-secondary loginspace">
         <div>
             {authState !== AuthState.Unknown && <h1 className="text-primary">Welcome to BookATeeTime</h1>}
+            {location.state?.triggeredBy401 && effectiveAuthState === AuthState.Unauthenticated && (
+                <h3>You have been logged out. Please log in again.</h3>
+            )}
             {authState === AuthState.Authenticated && (
                 <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
             )}
