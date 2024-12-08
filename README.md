@@ -86,3 +86,12 @@ For this deliverable I associate reserved tee times with the logged in user, sto
 - Existing User - allows them to book tee times associated with their user only
 - Use MongoDB to store credentials - Stores the user's credentials
 - Restricts Functionality - You cannot reserve or cancel a tee time if you are not logged in
+
+## WebSocket Deliverable
+
+For this deliverable I used WebSocket to update the list of teetimes on the frontend in realtime.
+
+- Backend listens for WebSocket connection - done
+- Frontend makes WebSocket connection - done
+- Data send over WebSocket connection - done
+- WebSocket data displayed - when a tee time is booked by a user, all other users see this tee time go off the booking page in real time. Similarly, when a user cancels a tee time from their reservation page, all other users see this tee time reappear on the booking page in real time.
